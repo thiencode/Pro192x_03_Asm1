@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Functions {
+public class Processor {
     List<CCCD> list;
 
     public void selectionScreen() {
