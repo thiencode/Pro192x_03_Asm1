@@ -125,14 +125,22 @@ public class Processor {
         }
         System.out.print("Vui long nhap so CCCD: ");
         String id = sc.nextLine();
-        CCCD newCccd = getCccdById(id, list);
-        if (newCccd == null) {
-            System.out.println("-------- Khong tim thay CCCD! --------");
+        if (!id.matches("\\d{12}")) {
+            System.out.println("------ Value " + id + " is a valid CCCD!   ------");
             inputCccd();
-        } else {
-            checkInfo(newCccd);
-
         }
+        else {
+            System.out.println("Invalid CCCD.");
+            CCCD newCccd = getCccdById(id, list);
+            if (newCccd == null) {
+                System.out.println("-------- Khong tim thay CCCD! --------");
+                inputCccd();
+            } else {
+                checkInfo(newCccd);
+
+            }
+        }
+
     }
 
     public String verifyCode(int num) {

@@ -1,6 +1,6 @@
 package model;
 
-import Services.Functions;
+import Services.Processor;
 
 import java.util.List;
 import java.util.Random;
@@ -30,7 +30,7 @@ public class CCCD {
 
     private void setId(String placeOfBirth, String gender, int dob, int randomNumber) {
         String idNumber = "";
-        Functions func = new Functions();
+        Processor func = new Processor();
         List<Province> provinces = func.getDefaultProvince();
 //        append province code to CCCD
         for (Province pro : provinces) {
