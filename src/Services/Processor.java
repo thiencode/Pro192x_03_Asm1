@@ -63,53 +63,62 @@ public class Processor {
 
     /*      start main menu       */
     public void menu() {
-        Scanner sc = new Scanner(System.in);
-        int choice;
+        int choice = 0;
 
         do {
+            Scanner sc = new Scanner(System.in);
             selectionScreen();
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    list = getDefaultCCCD();
-                    inputVerifyCode();
-                    inputCccd();
-                    break;
-                case 2:
-                    System.out.println("ok 2");
-                    break;
-                default:
-                    System.out.println("Vui long nhap dung cac chuc nang hien co.");
-                    break;
+            if (!sc.hasNextInt()){
+                System.out.println("Vui long nhap so");
+                menu();
+            }else {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 0:
+                        return;
+                    case 1:
+                        list = getDefaultCCCD();
+                        inputVerifyCode();
+                        inputCccd();
+                        break;
+                    case 2:
+                        System.out.println("ok 2");
+                        break;
+                    default:
+                        System.out.println("Vui long nhap dung cac chuc nang hien co.");
+                        break;
+                }
             }
-
-
         } while (choice != 0);
     }
     /*      End main menu       */
 
     /*      The Second menu*/
     public void checkInfo(CCCD cccd) {
-        Scanner sc = new Scanner(System.in);
-        int choice;
+        int choice = 0;
         do {
+            Scanner sc = new Scanner(System.in);
             checkInfoScreen();
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    cccd.displayPob();
-                    break;
-                case 2:
-                    cccd.displayAgeAndGender();
-                    break;
-                case 3:
-                    cccd.displayRandomNumber();
-                    break;
-                default:
-                    System.out.println("Vui long nhap dung chuc nang!");
-                    break;
+            if (!sc.hasNextInt()){
+                System.out.println("Vui long nhap so");
+                checkInfo(cccd);
+            }else {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        cccd.displayPob();
+                        break;
+                    case 2:
+                        cccd.displayAgeAndGender();
+                        break;
+                    case 3:
+                        cccd.displayRandomNumber();
+                        break;
+                    default:
+                        System.out.println("Vui long nhap dung chuc nang!");
+                        break;
+                }
             }
-
         } while (choice != 0);
     }
 /*      End the second menu     */
@@ -136,11 +145,11 @@ public class Processor {
         System.out.print("Vui long nhap so CCCD: ");
         String id = sc.nextLine();
         if (!id.matches("\\d{12}")) {
-            System.out.println("------ Value " + id + " is a valid CCCD!   ------");
+            System.out.println("Invalid CCCD.");
             inputCccd();
         }
         else {
-            System.out.println("Invalid CCCD.");
+            System.out.println("------ Value " + id + " is a valid CCCD!   ------");
             CCCD newCccd = getCccdById(id, list);
             if (newCccd == null) {
                 System.out.println("-------- Khong tim thay CCCD! --------");
